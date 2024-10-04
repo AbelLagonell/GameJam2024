@@ -17,6 +17,7 @@
 - Code
     - Scripts
     - Shaders
+    - Controllers
 - Docs
 - Level
     - Prefabs
