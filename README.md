@@ -1,5 +1,5 @@
-Unity Version: 2022.3.47f1
-Blender: Latest
+> Unity Version: 2022.3.47f1  
+> Blender: Latest
 # Shmup
  Shump with color based mechanics
  Trust is given with other player
