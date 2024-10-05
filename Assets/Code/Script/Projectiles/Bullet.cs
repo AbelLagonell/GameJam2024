@@ -12,13 +12,10 @@ public class Bullet : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collision other) {
-        for (int i = 0; i < 2; i++) {
-            if (other.GetContact(i).otherCollider.gameObject.tag == "Enemy") {
-                Destroy(other.gameObject);
-                Destroy(this.gameObject);
-                Debug.Log("Works");
-            }
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Enemy") {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
