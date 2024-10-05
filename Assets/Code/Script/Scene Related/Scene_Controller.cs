@@ -14,7 +14,7 @@ public class Scene_Controller : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    public async void LoadScene(int sceneIndex) {
+    public void LoadScene(int sceneIndex) {
         var scene = SceneManager.LoadSceneAsync(sceneIndex);
         //Loading Bar? v
         //scene.allowSceneActivation = false;
