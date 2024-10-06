@@ -104,4 +104,11 @@ public class Stat_Tracker : MonoBehaviour {
         currentStats = new Game_Stats();
         SaveStats();
     }
+
+    public void resetCurrentStats() {
+        System.Collections.Generic.List<int> hs = currentStats.highScores;
+        currentStats = new Game_Stats();
+        currentStats.highScores = hs;
+        SaveStats();
+    }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
     public float rotateSpeed = 1f;
+    public string enemyType;
 
     private Rigidbody rb;
 
@@ -14,5 +15,9 @@ public class Enemy : MonoBehaviour {
 
     private void FixedUpdate() {
         rb.angularVelocity = Vector3.up * rotateSpeed;
+    }
+
+    private void OnDestroy() {
+        Stat_Tracker.Instance.RecordEnemyKill(enemyType);
     }
 }
