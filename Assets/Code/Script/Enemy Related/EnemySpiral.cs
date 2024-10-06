@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpiral : MonoBehaviour
-{
-    public float speed = 3;
-    public float negative = -1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class EnemySpiral : MonoBehaviour {
+    private float radius = 3f;
+    private float speed = 1f;
+    private Vector3 centerOffset = Vector3.zero;
+
+    private Vector3 centerPoint;
+    private float currentAngle;
+
+    private void Start() {
+        centerPoint = transform.position + centerOffset;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(Vector3.right * negative * speed * Time.deltaTime);
-        transform.Translate(Vector3.down * speed * Time.deltaTime);
-        transform.Rotate(0.0f, 0.0f, 1.5f, Space.Self);
+    private void Update() {
+        currentAngle += speed * Time.deltaTime;
+
+        float x = Mathf.Cos(currentAngle) * radius;
+        float z = Mathf.Sin(currentAngle) * radius;
+
+        transform.position = centerPoint + new Vector3(x, z, 0f);
     }
 }

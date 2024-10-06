@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour {
             Instantiate(bullet, transform.position, Quaternion.identity);
             timer = 0;
         }
+
+        if (transform.position.y < -5) DestroyMe();
     }
 
     public void DestroyMe() {
