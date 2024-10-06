@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 public class Player_Movement : MonoBehaviour {
     private bool isFiring = false;
     private bool isPaused = false;
+    private float volume = 0.3f;
+    private float timeBewteenShots = 0.6f;
+    private float timer;
     private Vector2 moveInput;
     private Rigidbody rb;
     private GameObject lazerObject;
@@ -17,6 +20,7 @@ public class Player_Movement : MonoBehaviour {
     public GameObject bullet;
     public GameObject lazer;
     public GameObject pauseMenu;
+    public AudioSource audioSource;
 
     public static UnityEvent<bool> OnPauseStateChanged = new UnityEvent<bool>();
 
@@ -38,7 +42,14 @@ public class Player_Movement : MonoBehaviour {
 
     private void FixedUpdate() {
         rb.velocity = Vector3.Lerp(new Vector3(rb.velocity.x, rb.velocity.y, 0), new Vector3(moveInput.x, moveInput.y, 0) * moveSpeed, .25f);
-        if (isFiring) { StartCoroutine(fireBullets()); }
+        if (isFiring) {
+            StartCoroutine(fireBullets());
+            timer += Time.deltaTime;
+            if (timer > timeBewteenShots) {
+                audioSource.PlayOneShot(audioSource.clip, volume);
+                timer = 0;
+            }
+        }
         if (lazerObject != null) {
             lazerObject.transform.position = this.transform.position + new Vector3(0, 6.5f);
         }
@@ -53,7 +64,12 @@ public class Player_Movement : MonoBehaviour {
 
     public void FireActivated(InputAction.CallbackContext fa) {
         if (fa.started || fa.performed) isFiring = true;
-        if (fa.canceled) isFiring = false;
+        if (fa.canceled) {
+            isFiring = false;
+            timer = timeBewteenShots;
+        }
+        if (fa.started) timer = timeBewteenShots;
+
     }
 
     public void AltFireActivated(InputAction.CallbackContext afa) {
@@ -88,4 +104,5 @@ public class Player_Movement : MonoBehaviour {
         chargeTime++;
         yield return new WaitForSeconds(1f);
     }
+
 }

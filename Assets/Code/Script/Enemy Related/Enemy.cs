@@ -1,10 +1,12 @@
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
+    private Rigidbody rb;
+    private float volume = 1f;
+
     public float rotateSpeed = 1f;
     public string enemyType;
-
-    private Rigidbody rb;
+    public AudioSource audioSource;
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
@@ -17,7 +19,9 @@ public class Enemy : MonoBehaviour {
         rb.angularVelocity = Vector3.up * rotateSpeed;
     }
 
-    private void OnDestroy() {
-        Stat_Tracker.Instance.RecordEnemyKill(enemyType);
+    public void DestroyMe() {
+        AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, volume);
+        if (Stat_Tracker.Instance != null) Stat_Tracker.Instance.RecordEnemyKill(enemyType);
+        Destroy(gameObject);
     }
 }
