@@ -20,6 +20,10 @@ public class Player_Movement : MonoBehaviour {
 
     public static UnityEvent<bool> OnPauseStateChanged = new UnityEvent<bool>();
 
+    private void Awake() {
+        if (!isPaused) { SetPauseState(true); }
+    }
+
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
