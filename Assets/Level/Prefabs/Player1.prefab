@@ -200,6 +200,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d74b12b5-a67e-4b8d-917a-023bf4cee4d4
     m_ActionName: Player/Alt Fire[/XInputControllerWindows/leftTrigger,/Mouse/rightButton,/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2298258744894368544}
+        m_TargetAssemblyTypeName: Player_Movement, Assembly-CSharp
+        m_MethodName: PauseActivate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a3fcc87e-06cf-4ca9-b541-55242cbc0382
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -222,6 +238,7 @@ MonoBehaviour:
   chargeTime: 0
   bullet: {fileID: 161061801054798472, guid: ca8723fd046d5144a96c6b6cd5c50a5c, type: 3}
   lazer: {fileID: 6452562113131652212, guid: 0ad280e3774ce4d4aa2f6acf1c562ca4, type: 3}
+  pauseMenu: {fileID: 3489836537261431291, guid: e13b2071a0ce87b4280342a5bfca7032, type: 3}
 --- !u!54 &8461050510308144220
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,18 +1,24 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Player_Movement : MonoBehaviour {
     private bool isFiring = false;
+    private bool isPaused = false;
     private Vector2 moveInput;
     private Rigidbody rb;
     private GameObject lazerObject;
+    private GameObject pauseMenuObject;
 
     public float moveSpeed = 7f;
     public float bulletSpeed = 14f;
     public float chargeTime = 0f;
     public GameObject bullet;
     public GameObject lazer;
+    public GameObject pauseMenu;
+
+    public static UnityEvent<bool> OnPauseStateChanged = new UnityEvent<bool>();
 
 
     private void Start() {
@@ -50,6 +56,26 @@ public class Player_Movement : MonoBehaviour {
         if (afa.performed && chargeTime >= 100) {
             lazerObject = Instantiate(lazer, transform.position + new Vector3(0, 6.5f), Quaternion.identity);
             chargeTime = 0;
+        }
+    }
+
+    public void PauseActivate(InputAction.CallbackContext pa) {
+        if (pa.started) {
+            SetPauseState(!isPaused);
+        }
+    }
+
+    public void SetPauseState(bool pauseState) {
+        if (isPaused != pauseState) {
+            isPaused = pauseState;
+            Time.timeScale = isPaused ? 1f : 0f;
+            OnPauseStateChanged.Invoke(isPaused);
+        }
+
+        if (!isPaused) {
+            pauseMenuObject = Instantiate(pauseMenu);
+        } else {
+            Destroy(pauseMenuObject);
         }
     }
 

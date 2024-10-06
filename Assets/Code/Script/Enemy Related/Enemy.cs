@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
     public float rotateSpeed = 1f;
 
+    private bool paused = false;
     private Rigidbody rb;
 
     private void Awake() {
