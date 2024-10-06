@@ -6,13 +6,13 @@ using UnityEngine.InputSystem;
 public class Player_Movement : MonoBehaviour {
     private bool isFiring = false;
     private bool isPaused = false;
-    private float volume = 0.3f;
+    private float volume = 0.5f;
     private float timeBewteenShots = 0.6f;
     private float timer;
     private Vector2 moveInput;
     private Rigidbody rb;
     private GameObject lazerObject;
-    private GameObject pauseMenuObject;
+    static private GameObject pauseMenuObject;
 
     public float moveSpeed = 7f;
     public float bulletSpeed = 14f;
@@ -53,6 +53,10 @@ public class Player_Movement : MonoBehaviour {
         if (lazerObject != null) {
             lazerObject.transform.position = this.transform.position + new Vector3(0, 6.5f);
         }
+
+        if (Stat_Tracker.Instance.currentStats.gameStatus == "Game Over") {
+            SetPauseState(false);
+        }
     }
 
     public void MoveActivated(InputAction.CallbackContext mv) {
@@ -80,7 +84,7 @@ public class Player_Movement : MonoBehaviour {
     }
 
     public void PauseActivate(InputAction.CallbackContext pa) {
-        if (pa.started) {
+        if (pa.started && Stat_Tracker.Instance.currentStats.gameStatus != "Game Over") {
             SetPauseState(!isPaused);
         }
     }
@@ -93,7 +97,8 @@ public class Player_Movement : MonoBehaviour {
         }
 
         if (!isPaused) {
-            pauseMenuObject = Instantiate(pauseMenu);
+            if (pauseMenuObject == null) pauseMenuObject = Instantiate(pauseMenu);
+            if (Stat_Tracker.Instance.currentStats.gameStatus != "Game Over") Stat_Tracker.Instance.GameStateUpdate("Paused");
         } else {
             Destroy(pauseMenuObject);
         }

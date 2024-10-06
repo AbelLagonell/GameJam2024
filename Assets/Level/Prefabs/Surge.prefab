@@ -148,9 +148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 5
-  volume: 1
+  timeBetweenShots: 0
+  timer: 0
   enemyType: Surge
   audioSource: {fileID: 5689060702458436361}
+  bullet: {fileID: 346325140287200390, guid: 362265ed9ad4ed64397cc0630dab127c, type: 3}
 --- !u!1 &7680963448827028923
 GameObject:
   m_ObjectHideFlags: 0
