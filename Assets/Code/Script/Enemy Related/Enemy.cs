@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour {
     private float volume = .5f;
 
     public float rotateSpeed = 1f;
-    public float timeBetweenShots = 3f;
+    public float timeBetweenShots = 1f;
     public float timer;
     public string enemyType;
     public AudioSource audioSource;

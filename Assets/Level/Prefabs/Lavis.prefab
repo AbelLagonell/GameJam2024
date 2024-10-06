@@ -240,7 +240,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!135 &-7852444441242674528
 SphereCollider:
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 10
-  timeBetweenShots: 0
+  timeBetweenShots: 0.3
   timer: 0
   enemyType: Lavis
   audioSource: {fileID: 819337749631665087}
