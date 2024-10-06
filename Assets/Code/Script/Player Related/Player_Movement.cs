@@ -41,7 +41,7 @@ public class Player_Movement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        rb.velocity = Vector3.Lerp(new Vector3(rb.velocity.x, rb.velocity.y, 0), new Vector3(moveInput.x, moveInput.y, 0) * moveSpeed, .25f);
+        rb.velocity = Vector3.Lerp(new Vector3(rb.velocity.x, rb.velocity.y, 0), new Vector3(-moveInput.y, moveInput.x, 0) * moveSpeed, .25f);
         if (isFiring) {
             StartCoroutine(fireBullets());
             timer += Time.deltaTime;
