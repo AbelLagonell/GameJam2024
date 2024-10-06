@@ -34,5 +34,9 @@ public class EnemyCentipedeFromRight : MonoBehaviour
             transform.Translate(Vector3.forward * negative * speed * Time.deltaTime);
             transform.Translate(Vector3.down * speed * Time.deltaTime);
         }
+        
+        if (transform.position.y > 7) {
+            Destroy(this.gameObject);
+        }
     }
 }

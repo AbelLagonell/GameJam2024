@@ -16,6 +16,7 @@ public class EnemySpiral : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.right * negative * speed * Time.deltaTime);
+        transform.Translate(Vector3.down * speed * Time.deltaTime);
         transform.Rotate(0.0f, 0.0f, 1.5f, Space.Self);
     }
 }
