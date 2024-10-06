@@ -22,12 +22,10 @@ public class Player_Health : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        for (int i = 0; i < collision.contacts.Length; i++) {
-            if (collision.gameObject.tag == "Enemy") {
-                collision.gameObject.GetComponent<Enemy>().DestroyMe();
-                DecrementHealth();
-            }
+    private void OnTriggerEnter(Collider collision) {
+        if (collision.gameObject.tag == "Enemy") {
+            collision.gameObject.GetComponent<Enemy>().DestroyMe();
+            DecrementHealth();
         }
     }
 

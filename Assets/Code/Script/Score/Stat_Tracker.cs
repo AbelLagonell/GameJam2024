@@ -62,6 +62,9 @@ public class Stat_Tracker : MonoBehaviour {
     }
 
     public void AddHighScore(int score) {
+        for (int i = 0; i < currentStats.highScores.Count; i++) {
+            if (score == currentStats.highScores[i]) { return; }
+        }
         currentStats.highScores.Add(score);
         currentStats.highScores.Sort((a, b) => b.CompareTo(a)); // Sort descending
 

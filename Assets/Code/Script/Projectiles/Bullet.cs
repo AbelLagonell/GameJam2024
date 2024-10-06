@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour {
     private void FixedUpdate() {
         transform.Translate(new Vector3(0, 1, 0) * speed * Time.deltaTime);
         lifetime++;
-        if (lifetime > 100) {
+        if (lifetime > 200) {
             Destroy(this.gameObject);
         }
     }

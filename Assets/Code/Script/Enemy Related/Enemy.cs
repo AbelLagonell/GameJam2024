@@ -26,12 +26,15 @@ public class Enemy : MonoBehaviour {
             timer = 0;
         }
 
-        if (transform.position.y < -5) DestroyMe();
+        if (transform.position.y < -5) Destroy(gameObject);
     }
 
     public void DestroyMe() {
         AudioSource.PlayClipAtPoint(audioSource.clip, new Vector3(0, 1, -9), volume);
-        if (Stat_Tracker.Instance != null) Stat_Tracker.Instance.RecordEnemyKill(enemyType);
+        if (Stat_Tracker.Instance != null) {
+            Stat_Tracker.Instance.AddScore(10);
+            Stat_Tracker.Instance.RecordEnemyKill(enemyType);
+        }
         Destroy(gameObject);
     }
 }

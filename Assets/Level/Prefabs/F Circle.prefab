@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 762137509280221162, guid: b109717d682e9444eaafd23d411ee496, type: 3}
       propertyPath: m_Name
-      value: F Straight Variant
+      value: F Circle
       objectReference: {fileID: 0}
     - target: {fileID: 8566231704579483259, guid: b109717d682e9444eaafd23d411ee496, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8566231704579483259, guid: b109717d682e9444eaafd23d411ee496, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.21
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8566231704579483259, guid: b109717d682e9444eaafd23d411ee496, type: 3}
       propertyPath: m_LocalPosition.z

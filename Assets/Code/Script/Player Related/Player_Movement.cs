@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -9,6 +8,7 @@ public class Player_Movement : MonoBehaviour {
     private float volume = 0.5f;
     private float timeBewteenShots = 0.6f;
     private float timer;
+    private float timer2;
     private Vector2 moveInput;
     private Rigidbody rb;
     private GameObject lazerObject;
@@ -43,12 +43,19 @@ public class Player_Movement : MonoBehaviour {
     private void FixedUpdate() {
         rb.velocity = Vector3.Lerp(new Vector3(rb.velocity.x, rb.velocity.y, 0), new Vector3(-moveInput.y, moveInput.x, 0) * moveSpeed, .25f);
         if (isFiring) {
-            StartCoroutine(fireBullets());
             timer += Time.deltaTime;
+            timer2 += Time.deltaTime;
             if (timer > timeBewteenShots) {
                 audioSource.PlayOneShot(audioSource.clip, volume);
                 timer = 0;
             }
+            if (timer2 > timeBewteenShots / 12) {
+                Instantiate(bullet, transform.position, Quaternion.identity);
+                chargeTime++;
+                timer2 = 0;
+            }
+
+
         }
         if (lazerObject != null) {
             lazerObject.transform.position = this.transform.position + new Vector3(0, 6.5f);
@@ -72,7 +79,10 @@ public class Player_Movement : MonoBehaviour {
             isFiring = false;
             timer = timeBewteenShots;
         }
-        if (fa.started) timer = timeBewteenShots;
+        if (fa.started) {
+            timer = timeBewteenShots;
+            timer2 = timeBewteenShots * 2;
+        }
 
     }
 
@@ -103,11 +113,4 @@ public class Player_Movement : MonoBehaviour {
             Destroy(pauseMenuObject);
         }
     }
-
-    private IEnumerator fireBullets() {
-        Instantiate(bullet, transform.position, Quaternion.identity);
-        chargeTime++;
-        yield return new WaitForSeconds(1f);
-    }
-
 }

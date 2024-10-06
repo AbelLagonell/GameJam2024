@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 762137509280221162, guid: b109717d682e9444eaafd23d411ee496, type: 3}
       propertyPath: m_Name
-      value: F Straight Variant
+      value: F Diagonally Down
       objectReference: {fileID: 0}
     - target: {fileID: 8566231704579483259, guid: b109717d682e9444eaafd23d411ee496, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,5 +78,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0fc1a568f342a41a156be25647b52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedDown: 3
+  speedDown: 1
   speed: 1

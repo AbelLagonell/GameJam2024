@@ -5,7 +5,7 @@ public class Enemy_Bullet : MonoBehaviour {
     private int lifetime = 0;
 
     private void FixedUpdate() {
-        transform.Translate(new Vector3(0, -0.75f, 0) * speed * Time.deltaTime);
+        transform.Translate(new Vector3(0, -0.5f, 0) * speed * Time.deltaTime);
         lifetime++;
         if (lifetime > 100) {
             Destroy(this.gameObject);
