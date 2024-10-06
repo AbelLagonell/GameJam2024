@@ -10,9 +10,11 @@ public class Stat_Tracker : MonoBehaviour {
     private string saveFilePath;
 
     public Game_Stats currentStats = new Game_Stats();
-    public event Action<int> onScoreChanged;
-    public event Action<int> onEnemyKilled;
-    public event Action<int> onBulletBlocked;
+    public event Action<int> OnScoreChanged;
+    public event Action<int> OnEnemyKilled;
+    public event Action<int> OnBulletBlocked;
+    public event Action<int> OnPlayer1HealthChange;
+    public event Action<int> OnPlayer2HealthChange;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -32,7 +34,7 @@ public class Stat_Tracker : MonoBehaviour {
 
     public void AddScore(int points) {
         currentStats.totalScore += points;
-        onScoreChanged?.Invoke(currentStats.totalScore);
+        OnScoreChanged?.Invoke(currentStats.totalScore);
         SaveStats();
     }
     public void RecordBulletBlock(string bulletType = "generic") {
@@ -43,7 +45,7 @@ public class Stat_Tracker : MonoBehaviour {
         }
         currentStats.bulletTypeBlocked[bulletType]++;
 
-        onBulletBlocked?.Invoke(currentStats.bulletsBlocked);
+        OnBulletBlocked?.Invoke(currentStats.bulletsBlocked);
         SaveStats();
     }
 
@@ -55,7 +57,7 @@ public class Stat_Tracker : MonoBehaviour {
         }
         currentStats.enemyTypeKills[enemyType]++;
 
-        onEnemyKilled?.Invoke(currentStats.enemiesKilled);
+        OnEnemyKilled?.Invoke(currentStats.enemiesKilled);
         SaveStats();
     }
 
@@ -68,6 +70,25 @@ public class Stat_Tracker : MonoBehaviour {
         }
 
         SaveStats();
+    }
+
+    public void HealthUpdate(int player, int health) {
+        if (player == 1) {
+            currentStats.player1Health = health;
+            OnPlayer1HealthChange?.Invoke(currentStats.player1Health);
+        } else if (player == 2) {
+            currentStats.player2Health = health;
+            OnPlayer2HealthChange?.Invoke(currentStats.player2Health);
+        }
+    }
+
+    public void GameStateUpdate(string state) {
+        currentStats.gameStatus = state;
+        if (state == "Game Over") {
+            AddHighScore(currentStats.totalScore);
+        } else {
+            SaveStats();
+        }
     }
 
     private void InitializeSaveFilePath() {

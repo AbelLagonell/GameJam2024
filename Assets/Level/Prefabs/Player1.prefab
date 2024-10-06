@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 2945186433540157370}
   - component: {fileID: 6745935738085924089}
   - component: {fileID: 2298258744894368544}
+  - component: {fileID: 1554606122133727132}
   - component: {fileID: 8461050510308144220}
   - component: {fileID: 7006263087008608583}
   m_Layer: 0
@@ -367,9 +368,22 @@ MonoBehaviour:
   bulletSpeed: 14
   chargeTime: 0
   bullet: {fileID: 161061801054798472, guid: 7bddfd99aa98fb34189598c75b1df48e, type: 3}
-  lazer: {fileID: 6452562113131652212, guid: 0ad280e3774ce4d4aa2f6acf1c562ca4, type: 3}
+  lazer: {fileID: 6452562113131652212, guid: 529b026d44ba1804ebd34f4d317f787e, type: 3}
   pauseMenu: {fileID: 3489836537261431291, guid: e13b2071a0ce87b4280342a5bfca7032, type: 3}
   audioSource: {fileID: 2306258296885958296}
+--- !u!114 &1554606122133727132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380880570185386011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249eb983838c193418c85cdf446d5a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 1
 --- !u!54 &8461050510308144220
 Rigidbody:
   m_ObjectHideFlags: 0
